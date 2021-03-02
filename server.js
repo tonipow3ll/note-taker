@@ -25,15 +25,15 @@ app.use(logger);
 
 
 // this *should* bring up any 'stored notes' 
-app.get('/api/notes', (req, res) => res.json(notes))
+// app.get('/api/notes', (req, res) => res.json(notes))
 
 // =====================================
 // routes to other html pages in this file
 // =====================================
 require('./public/routes/htmlroutes.js')(app);
+require('./public/routes/apiroutes.js')(app);
 
-// this line causes nodemon / server to crash
-// require('/public/routes/notes.js')(app);
+
 
 // =====================================
 // port listener
