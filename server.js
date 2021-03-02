@@ -1,35 +1,43 @@
-// const bodyParser = require('body-parser');
+
+// =====================================
+// requirements/express set up 
+// =====================================
 const express = require('express');
 const path = require('path');
-const fs = require('fs')
-// const htmlRoutes = require('routes/htmlroute');
-// const apiRoutes = require('routes/apiRoute');
+const fs = require('fs');
+// const { resourceLimits } = require('worker_threads');
+// THIS BREAKS THE SERVER ALSO 
+// const notes = require('./public/notes')
 
 const app = express();
-// const bodyParser = require('body-parser')
-// // Sets an initial port. We"ll use this later in our listener
 const PORT = process.env.PORT || 3000;
-// // const routes = require('somefile.js')
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+const logger = (req, res, next) => {
+  console.log(`${req.portocol}://${req.get('host')}${req.originalUrl}`)
+  next();
+}
+// init middleware
+app.use(logger);
 
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
-})
 
+// this *should* bring up any 'stored notes' 
+app.get('/api/notes', (req, res) => res.json(notes))
 
-app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/notes.html"));
-})
+// =====================================
+// routes to other html pages in this file
+// =====================================
+require('./public/routes/htmlroutes.js')(app);
 
 // this line causes nodemon / server to crash
-// require('routes.js')(app);
+// require('/public/routes/notes.js')(app);
 
+// =====================================
 // port listener
+// =====================================
 app.listen(PORT, () => {
   console.log(`App listening on PORT: ${PORT}`);
 });
