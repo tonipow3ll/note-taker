@@ -2,12 +2,14 @@
 
 // TO DOS:
 // ADD ID'S TO NOTES
+// EDIT FUNCTIONALITY
 // WORK ON DELETE FUNCTIONALITY
 
 
 const fs = require('fs');
 const noteArray = require('./data/notesData.json');
 const path = require('path')
+const {v4 : uuidv4} = require('uuid')
 
 // ROUTING
 
@@ -27,7 +29,9 @@ module.exports = (app) => {
 //body is on the request object <-------
 // delete will look similar to this - MUST add id's first
     app.post('/api/notes', (req, res) => {
+        const id = uuidv4();
         let newNote = req.body;
+        newNote.id = id;
         noteArray.push(newNote);
         let stringifiedNote = JSON.stringify(noteArray);
         fs.writeFile(path.join(__dirname, './data/notesData.json'), stringifiedNote,'utf-8', (err, data) => {
@@ -43,38 +47,3 @@ module.exports = (app) => {
     })
 
 };
-
-// old code snippers / notes 
- // don't think i need the 'else' portion, right now this pushes to the array no matter what. 
-//   app.post('/api/notes', (req, res) => {
-//     if (noteArray.length < 10) {
-//         noteArray.push(req.body);
-//     //   res.json(true);
-//     } else {
-//         noteArray.push(req.body);
-//       res.json(false);
-//     }
-//   });
-
-// app.post('/api/notes', (req, res) => {
-//     fs.readFile('./data/notesData.json', 'utf-8', function(err, data) {
-
-
-//         var notesArray = JSON.parse(data)
-//         console.log(notesArray)
-//     })
-
-// });
-
-// var fs = require('fs')
-
-
-
-// below didn't work 
-// if (error) {
-//     res.json(false)
-//     return console.log(error)
-// } else {
-//     noteArray.push(req.body);
-//     res.json(true)
-// }
