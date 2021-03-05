@@ -62,7 +62,7 @@ module.exports = (app) => {
             const filteredNotes = activeNote.filter(note => note.id != thisnote)
             fs.writeFile(path.join(__dirname, './data/notesData.json'), JSON.stringify(filteredNotes), 'utf-8', (err, data) => {
                 if (err) throw err
-                res.send(filteredNotes);
+                res.send(activeNote);
             })
 
         })
