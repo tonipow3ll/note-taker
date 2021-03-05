@@ -15,27 +15,22 @@ const { v4: uuidv4 } = require('uuid')
 
 module.exports = (app) => {
 
+// ===================
+// get request
+// ===================
    
-    app.get('/api/notes', (req, res) => res.json(activeNote));
-
-    // attempting to get active notes to show / edit functionality
-    // app.get('/api/notes', (req, res) => {
-    //     fs.readFile('./data/notesData.json', 'utf-8', (err, data) => {
-    //        if( activeNote.id === req.params.id);
-    //        res.JSON.parse(activeNote)
-    //     })
-    // });
+    // app.get('/api/notes', (req, res) => res.json(activeNote));
 
     app.get('/api/notes', (req, res) => {
         fs.readFile(path.join(__dirname,'./data/notesData.json'), 'utf-8', (err, data) => {
-            let activeNote = JSON.parse(data)
-            console.log(activeNote)
-            res.json(activeNote)
+            let newnotes = JSON.parse(data)
+            // console.log(activeNote)
+            res.json(newnotes)
         })
     });
 
 // ===================
-//post function
+// post request
 // ===================
     app.post('/api/notes', (req, res) => {
         let id = uuidv4();
@@ -56,7 +51,7 @@ module.exports = (app) => {
     });
 
 // ===================
-// delete function
+// delete request
 // ===================
     app.delete('/api/notes/:id', (req, res) => {
         let thisnote = req.params.id;
@@ -73,8 +68,4 @@ module.exports = (app) => {
         })
 
     })
-
-    // CHECK THIS LINK 
-    // https://stackoverflow.com/questions/61526572/fixed-express-js-delete-request
-
 };
