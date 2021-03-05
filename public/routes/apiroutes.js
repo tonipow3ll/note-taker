@@ -25,7 +25,8 @@ module.exports = (app) => {
         fs.readFile(path.join(__dirname,'./data/notesData.json'), 'utf-8', (err, data) => {
             let newnotes = JSON.parse(data)
             // console.log(activeNote)
-            res.json(newnotes)
+            // change this to 'newnotes' for it to work work, has weird bug on heroku
+            res.json(activeNote)
         })
     });
 
