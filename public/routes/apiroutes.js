@@ -26,7 +26,7 @@ module.exports = (app) => {
             let newnotes = JSON.parse(data)
             // console.log(activeNote)
             // change this to 'newnotes' for it to work work, has weird bug on heroku
-            res.json(newnotes)
+            res.json(activeNote)
         })
     });
 
@@ -56,8 +56,6 @@ module.exports = (app) => {
 // ===================
     app.delete('/api/notes/:id', (req, res) => {
         let thisnote = req.params.id;
-        //  console.log(thisnote)
-        // console.log(activeNote)
         fs.readFile(path.join(__dirname, './data/notesData.json'), 'utf-8', (err, data) => {
             let activeNote = JSON.parse(data);
             const filteredNotes = activeNote.filter(note => note.id != thisnote)
