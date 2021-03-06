@@ -4,6 +4,8 @@
 # ![ScreenShot](https://user-images.githubusercontent.com/72999798/110210748-27d30380-7e61-11eb-98d6-92b20ea983ac.gif)
 # [View the app on Heroku](https://note-genny.herokuapp.com/)
 
+# [View the walkthrough video](https://drive.google.com/file/d/1qUPEVRUwRRWK6tBTQ7xD6wajhSx3e5gr/view?usp=sharing/)
+
 # Table of Contents
 ### [Installation](#Installation)
 ### [Technologies](#Technologies)
@@ -17,7 +19,7 @@
 ###  Clone repository to your local device. Test by opening the index.html file in your browser. If it looks good, it's working right. 
 
 # Technologies
-### NodeJS, Express, Postman, Bootstrap
+### NodeJS, Express, Postman, Nodemon, Bootstrap
 
 # Usage
 ### This application was created by Toni Powell. Feel free to reach out via [email](tonipow3ll@gmail.com) or open up a GitHub issue, or pull request if there is something you would like to add. 

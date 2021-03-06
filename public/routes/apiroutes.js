@@ -18,7 +18,9 @@ module.exports = (app) => {
         fs.readFile(path.join(__dirname,'./data/notesData.json'), 'utf-8', (err, data) => {
             let newnotes = JSON.parse(data)
             // console.log(activeNote)
-            // change this to 'newnotes' for it to work work, has weird bug on heroku
+            // change this to 'newnotes' for delete to work properly.
+            // delete works fine with 'newnotes' in the res.json on the LOCAL environment.. 
+            // on heroku delete works as it should, BUT when you click 'save' to enter a new note - then all the 'deleted' notes re-populate.
             res.json(activeNote)
         })
     });
