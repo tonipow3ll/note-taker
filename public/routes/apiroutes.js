@@ -1,10 +1,3 @@
-// nothing here is working in postman
-
-// TO DOS:
-// ADD ID'S TO NOTES
-// EDIT FUNCTIONALITY
-// WORK ON DELETE FUNCTIONALITY
-
 
 const fs = require('fs');
 const activeNote = require('./data/notesData.json');
