@@ -26,7 +26,7 @@ module.exports = (app) => {
             let newnotes = JSON.parse(data)
             // console.log(activeNote)
             // change this to 'newnotes' for it to work work, has weird bug on heroku
-            res.json(activeNote)
+            res.json(newnotes)
         })
     });
 
@@ -61,6 +61,8 @@ module.exports = (app) => {
         fs.readFile(path.join(__dirname, './data/notesData.json'), 'utf-8', (err, data) => {
             let activeNote = JSON.parse(data);
             const filteredNotes = activeNote.filter(note => note.id != thisnote)
+            activeNote.splice(filteredNotes);
+            console.log(activeNote)
             fs.writeFile(path.join(__dirname, './data/notesData.json'), JSON.stringify(filteredNotes), 'utf-8', (err, data) => {
                 if (err) throw err
                 res.send(activeNote);
